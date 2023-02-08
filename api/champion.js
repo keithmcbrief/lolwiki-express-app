@@ -24,4 +24,16 @@ router.post('/create', [
   },
 ]);
 
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Champion.findById(id)
+    .populate('role')
+    .exec(function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      res.json(results)
+    });
+});
+
 module.exports = router;
