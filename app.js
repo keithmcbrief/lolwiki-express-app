@@ -8,6 +8,7 @@ var indexRouter = require('./api/index');
 var championsRouter = require('./api/champions');
 var championRouter = require('./api/champion');
 var rolesRouter = require('./api/roles');
+var roleRouter = require('./api/role');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/', indexRouter);
 app.use('/champions', championsRouter);
 app.use('/champion', championRouter);
 app.use('/roles', rolesRouter);
+app.use('/role', roleRouter);
 // catch 404 and forward to error handler
 // app.use(function (req, res, next) {
 //   next(createError(404));
