@@ -32,8 +32,14 @@ router.get('/:id', (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.json(results)
+      res.json(results);
     });
+});
+
+router.get('/:id/delete', async function (req, res, next) {
+  const id = req.params.id;
+  await Champion.deleteOne({ _id: id });
+  res.redirect('http://localhost:5173/champions')
 });
 
 module.exports = router;
