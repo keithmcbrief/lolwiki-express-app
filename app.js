@@ -41,7 +41,7 @@ app.use('/champion', championRouter);
 app.use('/roles', rolesRouter);
 app.use('/role', roleRouter);
 
-app.use('/', (req, res) => {
+app.use('*', (req, res) => {
   axios.get('https://lolwiki-frontend.vercel.app/index.html')
     .then(response => {
       res.send(response.data);
