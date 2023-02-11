@@ -41,4 +41,10 @@ app.use('/champion', championRouter);
 app.use('/roles', rolesRouter);
 app.use('/role', roleRouter);
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
 module.exports = app;
