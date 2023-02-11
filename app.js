@@ -9,7 +9,7 @@ var championsRouter = require('./api/champions');
 var championRouter = require('./api/champion');
 var rolesRouter = require('./api/roles');
 var roleRouter = require('./api/role');
-
+const axios = require('axios')
 var app = express();
 
 const mongoose = require('mongoose');
@@ -41,10 +41,15 @@ app.use('/champion', championRouter);
 app.use('/roles', rolesRouter);
 app.use('/role', roleRouter);
 
-app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+app.use('/', (req, res) => {
+  axios.get('https://YOUR_SPA_URL/index.html')
+    .then(response => {
+      res.send(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = app;
