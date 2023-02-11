@@ -15,7 +15,7 @@ router.post('/create', [
       if (err) {
         return next(err);
       }
-      res.json(`https://lolwiki-frontend.vercel.app/${role.url}`);
+      res.redirect(`https://lolwiki-frontend.vercel.app/${role.url}`);
     });
   },
 ]);
@@ -51,7 +51,7 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/delete', async function (req, res, next) {
   const id = req.params.id;
   await Role.deleteOne({ _id: id });
-  res.json(`https://lolwiki-frontend.vercel.app/roles`);
+  res.redirect(`https://lolwiki-frontend.vercel.app/roles`);
 });
 
 module.exports = router;

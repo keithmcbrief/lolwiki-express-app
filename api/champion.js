@@ -19,7 +19,7 @@ router.post('/create', [
       if (err) {
         return next(err);
       }
-      res.json(`https://lolwiki-frontend.vercel.app/${champion.url}`);
+      res.redirect(`https://lolwiki-frontend.vercel.app/${champion.url}`);
     });
   },
 ]);
@@ -43,7 +43,7 @@ router.post('/:id/update', (req, res, next) => {
       return next(err);
     }
 
-    res.json(`https://lolwiki-frontend.vercel.app/${newChamp.url}`);
+    res.redirect(`https://lolwiki-frontend.vercel.app/${newChamp.url}`);
   });
 });
 
@@ -62,7 +62,7 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/delete', async function (req, res, next) {
   const id = req.params.id;
   await Champion.deleteOne({ _id: id });
-  res.json(`https://lolwiki-frontend.vercel.app//champions`);
+  res.redirect(`https://lolwiki-frontend.vercel.app/champions`);
 });
 
 module.exports = router;
